@@ -29,8 +29,7 @@ Cloudflare instructions:
 ## Pipeline integration
 
 The edition-aware website publisher commits generated files under `public/`.
-This layout matches the existing Dutch website repository. Future publication
-will replace the placeholder with the generated Danish site.
+Future publication will replace the placeholder with the generated Danish site.
 
 Operational inputs for the future Danish installation:
 
