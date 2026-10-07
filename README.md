@@ -1,7 +1,7 @@
 # Dagen Forklaret
 
-Static website for the Danish news podcast. The initial landing page is a domain
-connection test; no episodes or feed are published by this repository yet.
+Generated static website for the Danish news podcast. The pipeline publishes
+approved episodes, audio links, source references and transcripts under `public/`.
 
 ## Cloudflare Pages setup
 
@@ -19,8 +19,8 @@ Cloudflare account as the Pages project. Add `www.dagenforklaret.dk` there as we
 if wanted. Keep `media.dagenforklaret.dk` connected to its existing R2 bucket.
 
 Confirm the deployment URL first, then open `https://dagenforklaret.dk` after
-domain activation. The expected page says **Dagen Forklaret**, **Nyheder på let
-dansk**, and **Hjemmesiden er klar**.
+domain activation. The generated page shows **Dagen Forklaret**, episode
+navigation and the latest approved episodes.
 
 Cloudflare instructions:
 - https://developers.cloudflare.com/pages/framework-guides/deploy-anything/
@@ -28,13 +28,15 @@ Cloudflare instructions:
 
 ## Pipeline integration
 
-The edition-aware website publisher commits generated files under `public/`.
-Future publication will replace the placeholder with the generated Danish site.
+The edition-aware website publisher commits generated files under `public/`
+after episode approval. Its dedicated VM checkout and write-enabled deploy key
+publish to `main`; Cloudflare Pages must automatically deploy that branch.
 
-Operational inputs for the future Danish installation:
+Website publication settings:
 
 ```dotenv
-WEBSITE_REPO_URL=https://github.com/dmitr-voronin/dagen-forklaret-web.git
+WEBSITE_PUBLISH_ENABLED=true
+WEBSITE_REPO_URL=git@github.com:dmitr-voronin/dagen-forklaret-web.git
 WEBSITE_BRANCH=main
 ```
 
